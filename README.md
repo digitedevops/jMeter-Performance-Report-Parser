@@ -1,5 +1,4 @@
 # jMeter Performace Result Upload Utility
-
 [jMeter](https://jmeter.apache.org/) is an Open Source testing software. It is 100% pure Java application for load and performance testing. jMeter is designed to cover categories of tests like load, functional, performance, regression, etc.
 
 jMeter run produces output in various format like xml, csv etc. This utility will read .csv report and store it into Mongo db provided by user.
@@ -9,6 +8,10 @@ jMeter run produces output in various format like xml, csv etc. This utility wil
 ```
 git clone https://github.com/digitedevops/jMeter-Performance-Report-Parser.git
 ```
+#### Pre-Requisite
+1. We need Mongo DB to store performance report csv data. You can use Mongo DB Docker image for the same. Refer [Mongo Docker Image documentation](https://hub.docker.com/_/mongo/)
+2. Set host ip and port for Mongo DB in perf/perf.ini file
+
 #### Create Virtual Environment
 Virtualenv is the easiest and recommended way to configure a custom Python environment for your services.
 To install virtualenv execute below command:
