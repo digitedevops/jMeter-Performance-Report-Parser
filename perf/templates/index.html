@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<table border="1" align="center">
+    <caption>jMeter Performance Run Report URLs.</caption>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>URI Pattern</th>
+    </tr>
+    <tr>
+        <td>Performance Report Upload</td>
+        <td>
+            <p>
+                This is the page where you can upload the csv result for your jMeter performance run. The data will get stored
+                in Mongo db.
+            </p>
+        </td>
+        <td>/upload</td>
+    </tr>
+    <tr>
+        <td>Performance Report</td>
+        <td>
+            <p>
+                On this page you can select compare criteria to see comparison for perf result.
+            </p>
+        </td>
+        <td>/perfreportui</td>
+    </tr>
+</table>
+</body>
+</html>

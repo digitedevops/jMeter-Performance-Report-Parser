@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>{{title}}</title>
+    </head>
+    <body>
+    {% block body %}
+    {% if not is_dev_mode %}
+        <form action = "/ms-perfcompare/importPerfResult" method = "POST" enctype = "multipart/form-data">
+    {% else %}
+        <form action = "/importPerfResult" method = "POST" enctype = "multipart/form-data">
+    {% endif %}
+    {% endblock%}
+            <table border=0>
+                <tr>
+                    <td>Release: </td>
+                    <td><input type="text" name = "release"></td>
+                </tr><tr>
+                    <td>Build: </td>
+                    <td><input type="number" name = "build"></td>
+                </tr><tr>
+                    <td>Perf Run Date: </td>
+                    <td><input type="date" name = "date"></td>
+                </tr><tr>
+                    <td>Result CSV: </td>
+                    <td><input type = "file" name = "file" accept = ".csv"/></td>
+                </tr>
+            </table>
+            <input type = "submit"/>
+        </form>
+    </body>
+</html>

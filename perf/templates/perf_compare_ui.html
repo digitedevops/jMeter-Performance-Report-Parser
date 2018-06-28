@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>{{title}}</title>
+    </head>
+    <body>
+    {% block body %}
+    {% if not is_dev_mode %}
+        <form method="POST" action="/ms-perfcompare/perfcompareui">
+    {% else %}
+        <form method="POST" action="/perfcompareui">
+    {% endif %}
+    {% endblock %}
+            <table border="1">
+                <tr>
+                    <th>Previous Release : </th>
+                    <td>
+                        <select name="base_rel" id="base_rel">
+                           {% for item in data %}
+                            <option value="{{item}}">{{item}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+
+                    <th>Current Release : </th>
+                    <td>
+                        <select name="curr_rel" id="curr_rel">
+                            {% for item in data %}
+                         <option value="{{item}}">{{item}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="right"><input type="submit"> </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

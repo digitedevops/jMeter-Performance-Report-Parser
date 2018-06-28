@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<title>{{ title }}</title>
+		<link rel="stylesheet" type="text/css" href="/ms-perfcompare/static/css/jquery.dataTables.css">
+		<script type="text/javascript" charset="utf8" src="/ms-perfcompare/static/js/jquery-1.12.4.js"></script>
+		<script type="text/javascript" charset="utf8" src="/ms-perfcompare/static/js/jquery.dataTables.js"></script>
+		<script>
+			$(document).ready( function () {
+				$('#table_id').DataTable({
+					paging: false
+				});
+				} );
+		</script>
+	</head>
+	<body>
+		<div><h1>SwiftALM performance report comparison</h1></div>
+		<table id="table_id" class="display">
+			<thead style="background: antiquewhite;">
+				<tr>
+					<td colspan="5" align="right">
+						<a href="{{backurl}}">Back</a>
+					</td>
+				</tr>
+				<tr class="row100 head">
+					<th class="column100 column1" data-column="column1">Module</th>
+					<th class="column100 column2" data-column="column2">Baseline Release({{baseline}})</th>
+					<th class="column100 column3" data-column="column3">Current Release({{current}})</th>
+					<th class="column100 column4" data-column="column4">% Change</th>
+					<th class="column100 column5" data-column="column5">state</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for module in modules_current %}
+					<tr class="row100">
+					<td class="column100 column1" data-column="column1">{{ module }}</td>
+					<td class="column100 column2" data-column="column2">{{ modules_base[module]['aggregate_report_90%_line'] }}</td>
+					<td class="column100 column3" data-column="column3">{{ modules_current[module]['aggregate_report_90%_line'] }}</td>
+					{% set base = modules_base[module]['aggregate_report_90%_line'] %}
+					{% set current = modules_current[module]['aggregate_report_90%_line'] %}
+					{% set percent_change = ((current | float - base | float) / base | float) * 100 %}
+					<td class="column100 column5" data-column="column5">{{ percent_change | int }}</td>
+					{% if current | float < 1.05 | float * base | int %}
+						<td class="column100 column4" data-column="column4" bgcolor="#c4ffc4">Pass</td>
+					{% else %}
+						<td class="column100 column4" data-column="column4" bgcolor="#ffadb5">Fail</td>
+					{% endif %}
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>
